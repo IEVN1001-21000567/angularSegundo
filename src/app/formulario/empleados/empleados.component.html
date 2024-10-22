@@ -1,0 +1,76 @@
+<!--
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="max-w-md mx-auto p-4 bg-gray-100 rounded-lg shadow-lg">
+    <div class="mb-4">
+      <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Matrícula:</label>
+      <input id="matricula" formControlName="matricula" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
+    </div>
+  
+    <div class="mb-4">
+      <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre:</label>
+      <input id="nombre" formControlName="nombre" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
+    </div>
+  
+    <div class="mb-4">
+      <label for="correo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo:</label>
+      <input id="correo" formControlName="correo" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
+    </div>
+  
+    <div class="mb-4">
+      <label for="edad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edad:</label>
+      <input id="edad" formControlName="edad" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
+    </div>
+  
+    <div class="mb-4">
+      <label for="horasTrabajadas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Horas Trabajadas:</label>
+      <input id="horasTrabajadas" formControlName="horasTrabajadas" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
+    </div>
+  
+    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Registrar
+    </button>
+  </form>
+  
+  <div class="grid grid-cols-3 gap-4 mt-4">
+    <button (click)="subImprimir()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Imprimir
+    </button>
+    
+    <button (click)="modificarEmpleado()" class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full px-5 py-2.5">
+      Modificar
+    </button>
+    
+    <button (click)="eliminarEmpleado()" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full px-5 py-2.5">
+      Eliminar
+    </button>
+  </div>
+  
+  <table class="min-w-full divide-y divide-gray-200 mt-8">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matrícula</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Correo</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Edad</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Horas Trabajadas</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Horas x Pagar</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Horas Extras</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subtotal</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total a Pagar</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let empleado of empleados">
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.matricula }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.nombre }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.correo }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.edad }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.horasTrabajadas }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.horasX }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.horasExtras }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.subtotal }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.total }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+-->
