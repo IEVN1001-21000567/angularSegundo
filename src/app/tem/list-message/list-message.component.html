@@ -1,6 +1,6 @@
 <p>list-message works!</p>
 
-<app-add-message ></app-add-message>
-
-<app-temah [mensaje]="title" (mensaje2)="recibirMensaje($event)"></app-temah>
-<p>evento:{{mensaje2}}</p>
+<tr *ngFor="let item of messageService.alumnos">
+    <td>{{item}}</td>
+</tr>
+{{messageService.alumnos}}
