@@ -1,76 +1,76 @@
-<!--
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="max-w-md mx-auto p-4 bg-gray-100 rounded-lg shadow-lg">
-    <div class="mb-4">
-      <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Matrícula:</label>
-      <input id="matricula" formControlName="matricula" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
-    </div>
-  
-    <div class="mb-4">
-      <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre:</label>
-      <input id="nombre" formControlName="nombre" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
-    </div>
-  
-    <div class="mb-4">
-      <label for="correo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo:</label>
-      <input id="correo" formControlName="correo" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
-    </div>
-  
-    <div class="mb-4">
-      <label for="edad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edad:</label>
-      <input id="edad" formControlName="edad" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
-    </div>
-  
-    <div class="mb-4">
-      <label for="horasTrabajadas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Horas Trabajadas:</label>
-      <input id="horasTrabajadas" formControlName="horasTrabajadas" type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
-    </div>
-  
-    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-      Registrar
-    </button>
-  </form>
-  
-  <div class="grid grid-cols-3 gap-4 mt-4">
-    <button (click)="subImprimir()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-      Imprimir
-    </button>
-    
-    <button (click)="modificarEmpleado()" class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm w-full px-5 py-2.5">
-      Modificar
-    </button>
-    
-    <button (click)="eliminarEmpleado()" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full px-5 py-2.5">
-      Eliminar
-    </button>
+<div class="flex justify-center p-6">
+  <div class="max-w-md w-full bg-white border border-red-400 rounded-lg shadow-lg p-6">
+    <form [formGroup]="formGroup" class="space-y-4">
+      <div class="space-y-4">
+        <div>
+          <label for="matricula" class="block text-sm font-medium text-black">Matrícula:</label>
+          <input type="number" id="matricula" class="bg-red-50 border border-red-300 text-black text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2" formControlName="matricula"/>
+        </div>
+
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-black">Nombre:</label>
+          <input type="text" id="nombre" class="bg-red-50 border border-red-300 text-black text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2" formControlName="nombre"/>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-black">Correo:</label>
+          <input type="email" id="email" class="bg-red-50 border border-red-300 text-black text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2" formControlName="email"/>
+        </div>
+
+        <div>
+          <label for="edad" class="block text-sm font-medium text-black">Edad:</label>
+          <input type="number" id="edad" class="bg-red-50 border border-red-300 text-black text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2" formControlName="edad"/>
+        </div>
+
+        <div>
+          <label for="horas" class="block text-sm font-medium text-black">Horas de trabajo:</label>
+          <input type="number" id="horas" class="bg-red-50 border border-red-300 text-black text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2" formControlName="horas"/>
+        </div>
+      </div>
+
+      <!-- Botones alineados horizontalmente -->
+      <div class="flex justify-between space-x-2 mt-4">
+        <button type="submit" (click)="guardarPersonas()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">Registrar</button>
+        <button type="button" (click)="cargarPersonas()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">Imprimir</button>
+        <button type="button" (click)="buscarPorMatricula()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">Modificar</button>
+        <button type="button" (click)="eliminarPorMatricula()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">Eliminar</button>
+      </div>
+    </form>
   </div>
-  
-  <table class="min-w-full divide-y divide-gray-200 mt-8">
-    <thead class="bg-gray-50">
+</div>
+
+<div class="flex-1 p-4">
+  <h3 class="text-lg font-bold text-red-700">Registro de Empleados</h3>
+  <table class="table-auto w-full text-left text-sm text-red-700 mt-2">
+    <thead class="text-xs text-red-700 uppercase bg-red-50">
       <tr>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matrícula</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Correo</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Edad</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Horas Trabajadas</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Horas x Pagar</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Horas Extras</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subtotal</th>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total a Pagar</th>
+        <th class="px-4 py-2">Matrícula</th>
+        <th class="px-4 py-2">Nombre</th>
+        <th class="px-4 py-2">Correo</th>
+        <th class="px-4 py-2">Edad</th>
+        <th class="px-4 py-2">Horas Trabajadas</th>
+        <th class="px-4 py-2">Horas por pagar</th>
+        <th class="px-4 py-2">Horas extra por pagar</th>
+        <th class="px-4 py-2">Sub total a pagar</th>
       </tr>
     </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
-      <tr *ngFor="let empleado of empleados">
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.matricula }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.nombre }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.correo }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.edad }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.horasTrabajadas }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.horasX }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.horasExtras }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.subtotal }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ empleado.total }}</td>
+    <tbody>
+      <tr *ngFor="let persona of personas" class="border-red-200">
+        <td class="border px-4 py-2">{{ persona.matricula }}</td>
+        <td class="border px-4 py-2">{{ persona.nombre }}</td>
+        <td class="border px-4 py-2">{{ persona.email }}</td>
+        <td class="border px-4 py-2">{{ persona.edad }}</td>
+        <td class="border px-4 py-2">{{ persona.horas }}</td>
+        <td class="border px-4 py-2">{{ persona.totalPagarh }}</td>
+        <td class="border px-4 py-2">{{ persona.totalHorasExtra }}</td>
+        <td class="border px-4 py-2">{{ persona.subTotal }}</td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7" class="text-right font-bold text-red-700">Total a pagar:</td>
+        <td class="border px-4 py-2 font-bold text-red-700">{{ totalGeneral | currency:'MXN' }}</td>
+      </tr>
+    </tfoot>
   </table>
-  
--->
+</div>

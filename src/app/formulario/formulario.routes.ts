@@ -9,8 +9,12 @@ export default[
         path: 'resistencia',
         loadComponent:()=>import('./resistencia/resistencia.component'),
     },
-    /*{
+    {
         path: 'empleados',
         loadComponent:()=>import('./empleados/empleados.component')
-    }*/
+    },
+    {
+        path: 'pizzeria',
+        loadComponent:()=>import('./pizzeria/pizzeria.component')
+    }
 ]as Routes

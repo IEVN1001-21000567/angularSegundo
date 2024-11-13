@@ -1,118 +1,159 @@
-/*import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
-interface Empleado {
-  matricula: string;
+interface Usuario {
+  matricula: number;
   nombre: string;
-  correo: string;
   edad: number;
-  horasTrabajadas: number;
-}
-
-interface EmpleadoR {
-  matricula: string;
-  nombre: string;
-  correo: string;
-  edad: number;
-  horasTrabajadas: number;
-  horasX: number;
-  horasExtras: number;
-  subtotal: number;
-  total: number;
+  email: string;
+  horas: number;
 }
 
 @Component({
   selector: 'app-empleados',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './empleados.component.html',
-  styleUrls:[]
+  styleUrls: []
 })
-
 export default class EmpleadosComponent {
   formGroup!: FormGroup;
-  empleados: Empleado[] = [];
+  personas: any[] = [];
+  totalGeneral: number = 0;
+  totalPagarh: number = 0;
+  totalHorasExtra: number = 0;
 
-  valores:Empleado={
-    matricula: '',
-  nombre: '',
-  correo: '',
-  edad: 0,
-  horasTrabajadas: 0
-  };
-   
-  empleadoR:EmpleadoR[]=[];
+ 
+
   constructor(private readonly fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.formGroup= this.initForm();
+    this.formGroup = this.initForm();
   }
 
-  initForm(): FormGroup{
+  initForm(): FormGroup {
     return this.fb.group({
-      matricula: [''],
-  nombre: [''],
-  correo: [''],
-  edad: [0],
-  horasTrabajadas: [0],
-    })
+      matricula: ['', Validators.required],
+      nombre: ['', Validators.required],
+      edad: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      horas: ['', Validators.required]
+    });
   }
 
   onSubmit(): void {
-    const {matricula, nombre, correo, edad, horasTrabajadas} = this.formGroup.value;
-    this.valores.matricula=matricula;
-    this.valores.nombre=nombre;
-    this.valores.correo=correo;
-    this.valores.edad=edad;
-    this.valores.horasTrabajadas=horasTrabajadas;
+    if (this.formGroup.valid) {
+      this.formGroup.reset(); 
+    } 
   }
 
-
-  subImprimir(): void {
-  const empleadosGuardados = localStorage.getItem('empleados');
-  if (empleadosGuardados) {
-    const empleadosRecuperados:Empleado=JSON.parse(empleadosGuardados);
-
-    const matricula= empleadosRecuperados.matricula;
-    const nombre= empleadosRecuperados.nombre;
-    const correo= empleadosRecuperados.correo;
-    const edad= empleadosRecuperados.edad;
-    const horasTrabajadas=empleadosRecuperados.horasTrabajadas;
-
-    let horasX = horasTrabajadas * 70; 
-    let horasExtras = Math.max(0, horasTrabajadas - 40); 
-    let subtotal = horasX + (horasExtras * 140); 
-    let total = subtotal; 
-
-  this.empleadoR.push({
-    matricula,
-    nombre,
-    correo,
-    edad,
-    horasTrabajadas,
-    horasX,
-    horasExtras,
-    subtotal,
-    total,
-  });
+  guardarPersonas(): void {
+    const { matricula, nombre, edad, email, horas } = this.formGroup.value;
+  
+    const nuevaPersona: Usuario = {
+      matricula,
+      nombre,
+      edad,
+      email,
+      horas
+    };
+  
+   
+    const resultadosGuardados = localStorage.getItem('personas');
+    const resultados = resultadosGuardados ? JSON.parse(resultadosGuardados) : [];
+  
+    
+    const index = resultados.findIndex((persona: Usuario) => persona.matricula === matricula);
+  
+    if (index !== -1) {
+      resultados[index] = nuevaPersona;
+    } else {
+      resultados.push(nuevaPersona);
+    }
+  
+   
+    localStorage.setItem('personas', JSON.stringify(resultados));
   }
-}
+  
 
-  modificarEmpleado(): void {
-    const matricula = prompt('Ingrese la matrícula del empleado que desea modificar');
-    const empleado = this.empleados.find(e => e.matricula === matricula);
-    if (empleado) {
-      const nuevasHoras = parseInt(prompt('Ingrese las nuevas horas trabajadas') || '0');
-      empleado.horasTrabajadas = nuevasHoras;
-      const actualizado = this.calcularSalario(empleado);
-      Object.assign(empleado, actualizado);
-      localStorage.setItem('empleados', JSON.stringify(this.empleados));
+  cargarPersonas(): void {
+    const personasGuardadas = localStorage.getItem('personas');
+    if (personasGuardadas) {
+      this.personas = JSON.parse(personasGuardadas);
+      this.Horasxpagar();
     }
   }
 
-  eliminarEmpleado(): void {
-    const matricula = prompt('Ingrese la matrícula del empleado que desea eliminar');
-    this.empleados = this.empleados.filter(e => e.matricula !== matricula);
-    localStorage.setItem('empleados', JSON.stringify(this.empleados));
+  
+  subImprime(): void {
+    const personasGuardadas = localStorage.getItem('personas');
+    if (personasGuardadas) {
+      this.personas = JSON.parse(personasGuardadas);
+    }
   }
-}*/
+
+  buscarPorMatricula(): void {
+    const matriculaBuscada = this.formGroup.value.matricula;
+    
+
+    const personasGuardadas = localStorage.getItem('personas');
+    const personas = personasGuardadas ? JSON.parse(personasGuardadas) : [];
+  
+ 
+    const personaEncontrada = personas.find((persona: Usuario) => persona.matricula === matriculaBuscada);
+  
+    if (personaEncontrada) {
+      
+      this.formGroup.patchValue({
+        nombre: personaEncontrada.nombre,
+        edad: personaEncontrada.edad,
+        email: personaEncontrada.email,
+        horas: personaEncontrada.horas
+      });
+    } 
+  }
+  
+  eliminarPorMatricula(): void {
+  const matriculaBuscada = this.formGroup.value.matricula;
+
+  const personasGuardadas = localStorage.getItem('personas');
+  let personas = personasGuardadas ? JSON.parse(personasGuardadas) : [];
+  personas = personas.filter((persona: Usuario) => persona.matricula !== matriculaBuscada);
+  localStorage.setItem('personas', JSON.stringify(personas));
+  this.formGroup.reset();
+
+  alert('Persona eliminada con éxito.');
+}
+
+Horasxpagar(): void {
+  const personasGuardadas = localStorage.getItem('personas');
+
+  if (personasGuardadas) {
+      const personas = JSON.parse(personasGuardadas);
+      const costoPorHora = 70; 
+      const costoHoraExtra = 140; 
+
+      this.personas = personas.map((persona: any) => {
+          const horasTrabajadas = persona.horas || 0;
+          let horasNormales = Math.min(horasTrabajadas, 40);
+          let horasExtras = horasTrabajadas > 40 ? horasTrabajadas - 40 : 0;
+
+          const totalPagarh = horasNormales * costoPorHora;
+          const totalHorasExtra = horasExtras * costoHoraExtra;
+          const subTotal = totalPagarh + totalHorasExtra;
+
+          return {
+              ...persona,
+              horasNormales,
+              horasExtras,
+              totalPagarh,
+              totalHorasExtra,
+              subTotal
+          };
+      });
+      this.totalGeneral = this.personas.reduce((acc, persona) => acc + persona.subTotal, 0);
+  }
+}
+    
+}
